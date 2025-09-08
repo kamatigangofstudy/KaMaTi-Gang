@@ -43,11 +43,11 @@ export function restart(options: VitePluginRestartOptions = {}): Plugin {
 	let timer: ReturnType<typeof setTimeout> | undefined;
 
 	function clear() {
-		clearTimeout(timer);
+		globalThis.clearTimeout(timer);
 	}
 	function schedule(fn: () => void) {
 		clear();
-		timer = setTimeout(fn, delay);
+		timer = globalThis.setTimeout(fn, delay);
 	}
 
 	return {
